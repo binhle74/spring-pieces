@@ -1,0 +1,22 @@
+server:
+  port: 9000
+  servlet:
+    context-path: /
+security:
+  oauth2:
+    client:
+      client-id: binhle
+      client-secret: binhle
+      access-token-uri: http://localhost:8080/sso-server/oauth/token
+      user-authorization-uri: http://localhost:8080/sso-server/oauth/authorize
+      authentication-scheme: header
+#      client-id: bd42d347683378b2a63a
+#      client-secret: 84fd55616a6799d926769475cf08a38cd5eb6213
+#      access-token-uri: https://github.com/login/oauth/access_token
+#      user-authorization-uri: https://github.com/login/oauth/authorize
+#      tokenName: oauth_token
+#      authenticationScheme: query
+#      clientAuthenticationScheme: form
+    resource:
+      user-info-uri: http://localhost:8080/sso-server/users/user/me
+#      user-info-uri: https://api.github.com/user
