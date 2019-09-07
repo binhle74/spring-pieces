@@ -1,0 +1,15 @@
+server:
+  port: 8088
+security:
+  oauth2:
+    client:
+      client-id: binhle
+      client-secret: binhle
+    resource:
+      token-info-uri: http://localhost:8080/sso-server/oauth/check_token
+      user-info-uri: http://localhost:8080/sso-server/users/user/me
+      id: resource_server
+logging:
+  level: 
+    root: DEBUG
+  
