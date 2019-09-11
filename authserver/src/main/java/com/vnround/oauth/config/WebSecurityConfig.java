@@ -51,11 +51,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-	public TokenStore tokenStore() {
-		return new InMemoryTokenStore();
-	}
-	
-	@Bean
 	public ApprovalStore approvalStore() {
 		return new InMemoryApprovalStore();
 	}

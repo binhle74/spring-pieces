@@ -1,6 +1,7 @@
 package com.vnround.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,6 +13,8 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
@@ -28,9 +31,6 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 	private static final int ACCESS_TOKEN_VALIDITY_SECONDS = 1*60*60;
 	private static final int REFRESH_TOKEN_VALIDITY_SECONDS = 6*60*60;
 	private static final String REDIRECT_URI = "http://localhost:9000/login";
-	
-	@Autowired
-	private TokenStore tokenStore;
 	
 	@Autowired
 	private ApprovalStore approvalStore;
@@ -69,9 +69,22 @@ public class OAuth2AuthorizationServer extends AuthorizationServerConfigurerAdap
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints
-		.tokenStore(this.tokenStore)
+		.tokenStore(tokenStore())
 		.approvalStore(approvalStore)
 		.authorizationCodeServices(authorizationCodeServices)
-		.authenticationManager(this.authenticationManager);
+		.authenticationManager(this.authenticationManager)
+		.accessTokenConverter(accessTokenConverter());
+	}
+	
+	@Bean
+	public JwtAccessTokenConverter accessTokenConverter() {
+		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		converter.setSigningKey("as466g");
+		return converter;
+	}
+	
+	@Bean
+	public TokenStore tokenStore() {
+		return new JwtTokenStore(accessTokenConverter());
 	}
 }
