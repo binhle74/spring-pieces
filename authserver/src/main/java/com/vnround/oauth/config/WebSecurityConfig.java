@@ -11,19 +11,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.provider.approval.ApprovalStore;
-import org.springframework.security.oauth2.provider.approval.InMemoryApprovalStore;
-import org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter;
-import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
-import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
-import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
 	@Resource(name = "userService")
 	private UserDetailsService userDetailsService;
-	TokenEndpoint a;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -46,23 +40,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
-	
-	@Bean
-	public ApprovalStore approvalStore() {
-		return new InMemoryApprovalStore();
-	}
-	
-	@Bean
-	public AuthorizationCodeServices authorizationCodeServices() {
-		return new InMemoryAuthorizationCodeServices();
-	}
-	
-	@Bean
-	public ClientCredentialsTokenEndpointFilter checkTokenEndpointFilter() throws Exception {
-	    ClientCredentialsTokenEndpointFilter filter = new ClientCredentialsTokenEndpointFilter("/oauth/check_token");
-	    filter.setAuthenticationManager(authenticationManagerBean());
-	    filter.setAllowOnlyPost(true);
-	    return filter;
 	}
 }
