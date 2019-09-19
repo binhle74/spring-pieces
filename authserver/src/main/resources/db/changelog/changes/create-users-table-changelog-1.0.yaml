@@ -1,0 +1,31 @@
+
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: binhle
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column: 
+                  name: username
+                  type: varchar(256)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: enable
+                  type: bool
+                  constraints:
+                    nullable: false
+        - rollback:
+            dropTable:
+              tableName: users
+         
+             
+  

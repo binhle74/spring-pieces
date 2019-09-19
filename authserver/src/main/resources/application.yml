@@ -4,7 +4,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/sso
+    url: jdbc:postgresql://localhost:5432/sso-test
     username: java
     password: 12345
   jpa:
