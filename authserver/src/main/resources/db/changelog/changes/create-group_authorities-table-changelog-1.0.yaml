@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: createGroupAuthoritiesTable
+      author: binhle
+      changes:
+        - createTable:
+            tableName: group_authorities
+            columns:
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authority
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: group_id
+            baseTableName: group_authorities
+            constraintName: fk_group_authorities_group
+            referencedColumnNames: id
+            referencedTableName: groups
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: NO ACTION
+            onUpdate: NO ACTION

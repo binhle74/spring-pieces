@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: initOAuthClientDetails
+      author: binhle
+      changes:
+        - insert:
+            tableName: oauth_client_details
+            columns:
+              - column:
+                  name: client_id
+                  value: binhle
+              - column:
+                  name: resource_ids
+                  value: resource_id,resource_server
+              - column:
+                  name: client_secret
+                  value: $2a$10$IrqsXjyyy9CtcTvTV8YkN.eECZygjjwu5OkdqZMlNi1Fk5fBj2sMS
+              - column:
+                  name: scope
+                  value: read,write,trust
+              - column:
+                  name: authorized_grant_types
+                  value: password,authorization_code,refresh_token,implicit
+              - column:
+                  name: web_server_redirect_uri
+                  value: http://localhost:9000/login
+              - column:
+                  name: authorities
+                  value: READ_ONLY_CLIENT
+              - column:
+                  name: access_token_validity
+                  value: 3600
+              - column:
+                  name: refresh_token_validity
+                  value: 3600
+              - column:
+                  name: autoapprove
+                  value: true
+              - column:
+                  name: additional_information
+                  value:

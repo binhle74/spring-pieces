@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: initGroupMembers
+      author: binhle
+      changes:
+        - insert:
+            tableName: group_members
+            columns:
+              - column:
+                  name: username
+                  value: admin
+              - column:
+                  name: group_id
+                  value: 1
+            

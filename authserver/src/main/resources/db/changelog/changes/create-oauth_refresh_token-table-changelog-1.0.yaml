@@ -1,31 +1,26 @@
-
 databaseChangeLog:
   - changeSet:
-      id: createUsersTable
+      id: createOAuthRefreshTokenTable
       author: binhle
       changes:
         - createTable:
-            tableName: users
+            tableName: oauth_refresh_token
             columns:
-              - column: 
-                  name: username
-                  type: varchar(256)
-                  constraints:
-                    primaryKey: true
-                    nullable: false
               - column:
-                  name: password
-                  type: varchar(256)
+                  name: token_id
+                  type: varchar(255)
                   constraints:
                     nullable: false
               - column:
-                  name: enabled
-                  type: bool
+                  name: token
+                  type: bytea
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authentication
+                  type: bytea
                   constraints:
                     nullable: false
         - rollback:
             dropTable:
-              tableName: users
-         
-             
-  
+              tableName: oauth_refresh_token

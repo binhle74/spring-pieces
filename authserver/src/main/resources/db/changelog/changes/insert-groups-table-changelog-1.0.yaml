@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: initGroups
+      author: binhle
+      changes:
+        - insert:
+            tableName: groups
+            columns:
+              - column:
+                  name: group_name
+                  value: ADMIN
+            

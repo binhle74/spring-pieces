@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: 2
+      id: initUsers
       author: binhle
       changes:
         - insert:
@@ -13,5 +13,5 @@ databaseChangeLog:
                   name: password
                   value: $2a$10$IrqsXjyyy9CtcTvTV8YkN.eECZygjjwu5OkdqZMlNi1Fk5fBj2sMS
               - column:
-                  name: enable
+                  name: enabled
                   value: true

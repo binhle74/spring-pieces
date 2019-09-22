@@ -1,0 +1,45 @@
+databaseChangeLog:
+  - changeSet:
+      id: createOAuthAccessTokenTable
+      author: binhle
+      changes:
+        - createTable:
+            tableName: oauth_access_token
+            columns:
+              - column:
+                  name: token_id
+                  type: varchar(255)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: token
+                  type: bytea
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authentication_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: authentication
+                  type: bytea
+                  constraints:
+                    nullable: false
+              - column:
+                  name: refresh_token
+                  type: varchar(255)
+        - rollback:
+            dropTable:
+              tableName: oauth_access_token

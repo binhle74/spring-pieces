@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: initGroupAuthorities
+      author: binhle
+      changes:
+        - insert:
+            tableName: group_authorities
+            columns:
+              - column:
+                  name: group_id
+                  value: 1
+              - column:
+                  name: authority
+                  value: ADMIN

@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: createGroupMembersTable
+      author: binhle
+      changes:
+        - createTable:
+            tableName: group_members
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(256)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: group_id
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseColumnNames: group_id
+            baseTableName: group_members
+            referencedColumnNames: id
+            referencedTableName: groups
+            constraintName: fk_group_members_groups
+            deferrable: true
+            initiallyDeferred: true
+            onDelete: NO ACTION
+            onUpdate: NO ACTION

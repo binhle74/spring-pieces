@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: createGroupsTable
+      author: binhle
+      changes:
+        - createTable:
+            tableName: groups
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: group_name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+        - rollback:
+              dropTable:
+                tableName: groups
+            
+           
